@@ -1,6 +1,7 @@
 const path = require('path');
 const express = require('express');
 const buddyRouter = require('./routes/buddyRouter');
+require('dotenv').config();
 
 const app = express();
 

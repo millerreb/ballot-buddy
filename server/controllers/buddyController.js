@@ -2,7 +2,9 @@ const buddyController = {};
 const fetch = require('node-fetch');
 
 buddyController.getUpcomingElectionData = (req, res, next) => {
-  let url = 'https://www.googleapis.com/civicinfo/v2/voterinfo?key=AIzaSyBYpng1gglUAOv70ZzAwrglOJctjkjFL1U&address=';
+  let url = 'https://www.googleapis.com/civicinfo/v2/voterinfo?key='
+  url += process.env.CIVIC_API_KEY;
+  url += '&address=';
   const address = req.body.addressLine.split(' ').join('%20');
   url += address;
   url += '%20';
