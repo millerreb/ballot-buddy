@@ -5,8 +5,8 @@ const NavLinks = ({ isLoggedIn }) => {
   
   return (
     <div className="nav-links">
-      { isLoggedIn && <Button size="small" color="primary">Profile</Button> }
-      {isLoggedIn ? <Button size="small" color="primary">Logout</Button> : <Button>Sign-in</Button>}
+      { isLoggedIn && <Button variant="contained" size="small" color="secondary">Profile</Button> }
+      { isLoggedIn ? <Button variant="contained" size="small" color="secondary">Logout</Button> : <Button variant="contained" size="small" color="primary">Sign-in</Button> }
     </div>
   );
 };

@@ -1,13 +1,18 @@
 import React from 'react';
+
 import NavLinks from './NavLinks';
 import Logo from './Logo';
 import BuddyQuote from './BuddyQuote';
 
-const Header = ({isLoggedIn}) => {
+const Header = ({ isLoggedIn }) => {
   return (
-    <NavLinks isLoggedIn={isLoggedIn} />
-    <Logo />
-    <BuddyQuote />
+    <header>
+      <NavLinks isLoggedIn={ isLoggedIn } />
+      <div className="logo-area">
+      <Logo />
+      <BuddyQuote />
+      </div>
+    </header>
   )
 }
 

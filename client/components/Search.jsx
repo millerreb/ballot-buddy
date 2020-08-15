@@ -1,7 +1,14 @@
 import React from 'react';
+import PlacesAutocomplete from 'react-places-autocomplete';
+import { TextField } from '@material-ui/core'
+
 
 const Search = (props) => {
-  <form className="buddy-search" noValidate autoComplete="off">
-  <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-</form>
+  return (
+    <form className="buddy-search">
+      <TextField id="outlined-basic" label="Outlined" variant="outlined" />
+    </form>
+  )
 };
+
+export default Search;
