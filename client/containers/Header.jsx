@@ -1,8 +1,8 @@
 import React from 'react';
 
-import NavLinks from './NavLinks';
-import Logo from './Logo';
-import BuddyQuote from './BuddyQuote';
+import NavLinks from '../components/NavLinks';
+import Logo from '../components/Logo';
+import BuddyQuote from '../components/BuddyQuote';
 
 const Header = ({ isLoggedIn }) => {
   return (
