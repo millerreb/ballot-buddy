@@ -1,12 +1,75 @@
-#root {
-  width: 1200px;
-  margin: 0 auto;
+body {
+  background: #f9f9f9cc;
 }
-
+header {
+  margin-bottom: 40px;
+}
 .nav-links {
   text-align: right;
 }
 
-header .buddy-quote {
+.buddy-quote {
   font-size: 49px;
 }
+.logo-area {
+  display: flex;
+  align-items: center;
+}
+img {
+  width: 100%;
+}
+
+.google-places-autocomplete__input {
+  padding: 20px !important;
+  margin-left: 10px !important;
+  box-shadow: 0 1px 16px 0 rgb(0 0 0 / 27%) !important;
+}
+
+.google-places-autocomplete__suggestions-container {
+  background: #fff;
+  color: #000;
+  width: calc(100% - 20px) !important;
+  margin-left: 10px !important;
+  box-shadow: 0 1px 16px 0 rgb(0 0 0 / 27%) !important;
+}
+/* add some styling to make material ui match our color scheme */
+.MuiButton-containedPrimary {
+  color: #fff;
+  background-color: #013062 !important;
+}
+
+/* put all autocomplete fonts back to roboto... */
+.google-places-autocomplete {
+  font-family: Roboto !important;
+}
+.google-places-autocomplete__suggestion--active {
+  background: #0130622e !important;
+}
+@media only screen and (min-width: 480px) {
+.buddy-quote {
+  display: none;
+}
+}
+
+@media only screen and (max-width: 768px) {
+  .buddy-quote {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  #root {
+    width: 1200px;
+    margin: 0 auto;
+  }
+.buddy-quote {
+  display: block;
+  text-align: right;
+  padding: 6px 25px;
+  background: #002f62;
+  color: white;
+}
+.logo {
+  width: 50%;
+}
+} 
