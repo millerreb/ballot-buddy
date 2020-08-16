@@ -15,19 +15,19 @@ const App = props => {
   return (
     <React.Fragment>
       <Header />
-        <Router>
+      <Router>
         <Switch>
           <Route exact path='/' >
             <Search />
           </Route>
-      {/* <Route path='/results' isLoggedIn={isLoggedIn}>
-          <Results />
-        </Route>
-        <Route path='/profile'>
-          <Profile />
-        </Route> */}
-      </Switch>
-    </Router>
+          <Route path='/results' isLoggedIn={isLoggedIn}>
+            <Results />
+          </Route>
+          <Route path='/profile'>
+            <Profile />
+          </Route>
+        </Switch>
+      </Router>
     </React.Fragment>
   )
 };
