@@ -1,0 +1,12 @@
+#root {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.nav-links {
+  text-align: right;
+}
+
+header .buddy-quote {
+  font-size: 49px;
+}
