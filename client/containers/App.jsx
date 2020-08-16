@@ -9,7 +9,12 @@ import Search from './Search';
 
 const App = props => {
   const [isLoggedIn, setIsLoggedIn] = useState('false');
+  const [address, setAddress] = useState('');
 
+  const onAddressSubmit = (addressObj) => {
+    return setAddress(addressObj);
+  }
+  const API_KEY = 'AIzaSyBHAs4K-WNgIbaFgjYvFML5zc8KQZ5Sgy8';
   // TO-DO: we'll need some logic, probably in useEffect, to detect login and set state appropriately
 
   return (
@@ -18,12 +23,12 @@ const App = props => {
       <Router>
         <Switch>
           <Route exact path='/' >
-            <Search />
+            <Search address={address} apiKey={API_KEY} onAddressSubmit={onAddressSubmit}/>
           </Route>
-          <Route path='/results' isLoggedIn={isLoggedIn}>
+          <Route path='/results' address={address} isLoggedIn={isLoggedIn}>
             <Results />
           </Route>
-          <Route path='/profile'>
+          <Route path='/profile' address={address}>
             <Profile />
           </Route>
         </Switch>

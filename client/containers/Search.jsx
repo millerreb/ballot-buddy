@@ -1,13 +1,35 @@
 import React from 'react';
-import PlacesAutocomplete from 'react-places-autocomplete';
+// import Autocomplete from 'react-google-autocomplete';
 import { TextField } from '@material-ui/core'
+
+import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
+import 'react-google-places-autocomplete/dist/index.min.css';
 
 
 const Search = (props) => {
   return (
-    <form className="buddy-search">
-      <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-    </form>
+    <div>
+    <GooglePlacesAutocomplete
+      // onSelect={console.log}
+      placeholder="Search for your address..."
+      onSelect={props.onAddressSubmit}
+      apiKey={props.apiKey}
+      // custom input field using Material UI
+      // renderInput={(props) => (
+      //   <div className="custom-wrapper">
+      //     <TextField
+      //     id="standard-full-width"
+      //     label="Search for your address"
+      //     style={{ margin: 0 }}
+      //     fullWidth
+      //     margin="normal"
+      //       // Custom properties
+      //       {...props}
+      //     />
+      //   </div>
+      // )}
+    />
+  </div>
   )
 };
 

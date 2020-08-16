@@ -1,7 +1,9 @@
 import React from 'react';
 
-const Results = (props) => {
-  render ()
+const Results = ({address}) => {
+  render (
+  <h1>{address}</h1>
+  )
 };
 
 export default Results;
