@@ -14,7 +14,7 @@ const App = props => {
   const onAddressSubmit = (addressObj) => {
     return setAddress(addressObj);
   }
-
+  const API_KEY = 'AIzaSyBHAs4K-WNgIbaFgjYvFML5zc8KQZ5Sgy8';
   // TO-DO: we'll need some logic, probably in useEffect, to detect login and set state appropriately
 
   return (
@@ -23,7 +23,7 @@ const App = props => {
       <Router>
         <Switch>
           <Route exact path='/' >
-            <Search address={address} onAddressSubmit={onAddressSubmit}/>
+            <Search address={address} apiKey={API_KEY} onAddressSubmit={onAddressSubmit}/>
           </Route>
           <Route path='/results' address={address} isLoggedIn={isLoggedIn}>
             <Results />

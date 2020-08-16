@@ -13,6 +13,7 @@ const Search = (props) => {
       // onSelect={console.log}
       placeholder="Search for your address..."
       onSelect={props.onAddressSubmit}
+      apiKey={props.apiKey}
       // custom input field using Material UI
       // renderInput={(props) => (
       //   <div className="custom-wrapper">
