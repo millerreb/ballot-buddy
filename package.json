@@ -41,6 +41,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-facebook-login": "^4.1.1",
     "react-google-places-autocomplete": "^2.3.2",
     "react-places-autocomplete": "^7.3.0",
     "react-router-dom": "^5.2.0",
