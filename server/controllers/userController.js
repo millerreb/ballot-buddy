@@ -1,6 +1,7 @@
 const userController = {};
 const userModel = require('../models/user');
 
+// Finds our user and stores their info on res.locals.userDoc
 userController.findUser = (req, res, next) => {
   userModel.findOne(req.body, function(err, doc) {
     if (err) {
@@ -11,21 +12,6 @@ userController.findUser = (req, res, next) => {
     }
     if (!doc) res.redirect('/createuser');
     res.locals.userDoc = doc;
-    next();
-  });
-}
-
-userController.createUser = (req, res, next) => {
-  const user = new userModel(req.body);
-
-  user.save(function(err) {
-    if (err) {
-        return next({
-        log: `An error occured in userController.createUser: ${err}`,
-        message: { err: `An error occurred` },
-      })
-    }
-    res.locals.newUser = user;
     next();
   });
 }
