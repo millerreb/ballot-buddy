@@ -145,8 +145,6 @@ buddyController.getCurrentRepresentatives = (req, res, next) => {
   url += req.body.city;
   url += '%20';
   url += req.body.state;
-  url += '%20';
-  url += req.body.zip;
 
   console.log('Making a request to: ' + url);
 

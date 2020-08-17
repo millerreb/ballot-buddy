@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon server/server.js",
     "build": "NODE_ENV=production webpack & NODE_ENV=production npm start",
-    "dev": "NODE_ENV=development webpack-dev-server --open --hot & NODE_ENV=development nodemon server/server.js"
+    "dev": "HTTPS=true NODE_ENV=development webpack-dev-server --open --hot & NODE_ENV=development nodemon server/server.js"
   },
   "repository": {
     "type": "git",
@@ -34,15 +34,19 @@
     "@material-ui/icons": "^4.9.1",
     "babel-plugin-styled-components": "^1.11.1",
     "concurrently": "^5.3.0",
+    "cookie-parser": "^1.4.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "history": "^5.0.0",
     "mongoose": "^5.10.0",
     "node-fetch": "^2.6.0",
     "nodemon": "^2.0.4",
+    "passport": "^0.4.1",
+    "passport-facebook": "^3.0.0",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-facebook-login": "^4.1.1",
     "react-google-places-autocomplete": "^2.3.2",
     "react-places-autocomplete": "^7.3.0",
     "react-router-dom": "^5.2.0",
