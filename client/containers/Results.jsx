@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import UpcomingElections from '../components/UpcomingElections';
 
+// dummy data for testing
 const dummyElectionsData = {
   electionName: "Florida State Primary Election",
   electionDay: "2020-08-18",
@@ -628,46 +629,44 @@ const dummyElectionsData = {
     },
   ],  
 }
-
-const Results = ({ address }) => {
+// use dummyElectionsData from above for testing
+const Results = (props) => {
   // declare state variables
   const [electionData, setElectionData] = useState(dummyElectionsData);
   const [senatorsData, setSenatorsData] = useState({});
   const [representativesData, setRepresentativesData] = useState({});
+  
 
-/** 
   // construct requestOptions for fetch requests
   const requestOptions = {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(address),
+    body: JSON.stringify(props.address),
   };
 
 
   // fetch upcoming election data by making a POST request with address in body 
-  useEffect(() => {
-    fetch('/api', requestOptions)
-      .then(response => response.json())
-      .then(parsedResponse => setElectionData(parsedResponse));
-  });
+  // useEffect(() => {
+  //   fetch('/api', requestOptions)
+  //     .then(response => response.json())
+  //     .then(parsedResponse => { setElectionData(parsedResponse) });
+  // },[]);
 
-  // fetch senators data by making a POST request with address in body
-  useEffect(() => {
-    fetch('/senators', requestOptions)
-      .then(response => response.json())
-      .then(parsedResponse => setSenatorsData(parsedResponse));
-  });
+  // fetch senators data by making a POST request with address in body || display components this data not built
+  // useEffect(() => {
+  //   fetch('/senators', requestOptions)
+  //     .then(response => response.json())
+  //     .then(parsedResponse => setSenatorsData(parsedResponse));
+  // });
 
-  // fetch representatives data by making a POST request with address in body
-  useEffect(() => {
-    fetch('/representatives', requestionOptions)
-      .then(response => response.json())
-      .then(parsedResponse => setRepresentativesData(parsedResponse));
-  });
-
-*/
+  // fetch representatives data by making a POST request with address in body || display components for this data not built
+  // useEffect(() => {
+  //   fetch('/representatives', requestOptions)
+  //     .then(response => response.json())
+  //     .then(parsedResponse => setRepresentativesData(parsedResponse));
+  // });
 
   return (
     <React.Fragment>
@@ -675,7 +674,6 @@ const Results = ({ address }) => {
        <Representatives representativesData={ representativesData } /> */}
       <UpcomingElections electionData={ electionData } />
     </React.Fragment>
-
   );
 };
 

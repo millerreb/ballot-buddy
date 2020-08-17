@@ -11,8 +11,8 @@ buddyController.getUpcomingElectionData = (req, res, next) => {
   url += req.body.city;
   url += '%20';
   url += req.body.state;
-  url += '%20';
-  url += req.body.zip;
+  // url += '%20';
+  // url += req.body.zip;
   url += '&electionId=2000'; // Hard-coded test election
 
   console.log('Making a request to: ' + url);

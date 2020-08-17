@@ -12,6 +12,9 @@ const App = props => {
   const [isLoggedIn, setIsLoggedIn] = useState('false');
   const [address, setAddress] = useState('');
 
+  // TO-DO: Need logic to test if logged in (Facebook cookie & GET request to sessions database)
+  
+  // takes google autocomplete result and parses into object for backend
   const onAddressSubmit = (address) => {
     let splitAddress = address.description.split(', ');
     const addressObj = {};
@@ -21,22 +24,24 @@ const App = props => {
     setAddress(addressObj);
     history.push('/results')
   }
+
+  // google places is a paid api... insert your key here
   const API_KEY = 'AIzaSyBHAs4K-WNgIbaFgjYvFML5zc8KQZ5Sgy8';
-  // TO-DO: we'll need some logic, probably in useEffect, to detect login and set state appropriately
 
   return (
     <React.Fragment>
       <Header />
+      {/* wrapped router with history object because it was the only way we could figure out how to render results page while keeping our address state */}
       <Router history={ history }>
         <Switch>
-          <Route path='/results' address={address} isLoggedIn={isLoggedIn}>
-            <Results />
+          <Route path='/results'>
+            <Results address={ address } isLoggedIn={ isLoggedIn } />
           </Route>
-          <Route path='/profile' address={address}>
-            <Profile />
+          <Route path='/profile'>
+            <Profile address={ address }/>
           </Route>
           <Route exact path='/' >
-            <Search address={address} apiKey={API_KEY} onSubmit={onAddressSubmit}/>
+            <Search address={ address } apiKey={ API_KEY } onSubmit={ onAddressSubmit }/>
           </Route>
         </Switch>
       </Router>

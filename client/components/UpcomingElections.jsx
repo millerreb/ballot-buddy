@@ -12,7 +12,7 @@ const UpcomingElections = (
       referendaContests 
     }
   }) => {
-
+  console.log(electionName);
   return (
     <React.Fragment>
       <ElectionInfo 

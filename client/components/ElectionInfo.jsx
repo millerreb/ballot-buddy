@@ -17,7 +17,8 @@ const ElectionInfo = ({
       notes, 
       pollingHours 
     }
-  ] }) => {
+  ]
+}) => {
   return (
     <Box id="upcomingElection">
       <ResultsSectionHeader text="Upcoming Election" />

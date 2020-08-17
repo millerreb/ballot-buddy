@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Contest from './Contest';
 import ResultsSectionHeader from './ResultsSectionHeader';
 import Box from '@material-ui/core/Box';
 
 const OfficeContests = ({ contests: officeContests }) => {
+  console.log(officeContests);
   // create state variables to store user selections
   const [selections, setSelections] = useState({});
 
@@ -12,7 +13,7 @@ const OfficeContests = ({ contests: officeContests }) => {
     const selectionUpdate = { [e.target.officeName]: e.target.candidateName }
     setSelections(Object.assign(selections, selectionUpdate));
     //TO-DO: Also need to toggle classname of associated candidate's name
-  }
+  };
   
   // generate list of contests to display
   const contestList = [];

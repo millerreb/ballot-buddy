@@ -73,3 +73,8 @@ img {
   width: 50%;
 }
 } 
+
+.linksContainer {
+  display: flex;
+  align-items: center;
+  } 
