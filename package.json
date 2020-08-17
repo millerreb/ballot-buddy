@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon server/server.js",
     "build": "NODE_ENV=production webpack & NODE_ENV=production npm start",
-    "dev": "NODE_ENV=development webpack-dev-server --open --hot & NODE_ENV=development nodemon server/server.js"
+    "dev": "HTTPS=true NODE_ENV=development webpack-dev-server --open --hot & NODE_ENV=development nodemon server/server.js"
   },
   "repository": {
     "type": "git",
@@ -38,6 +38,7 @@
     "mongoose": "^5.10.0",
     "node-fetch": "^2.6.0",
     "nodemon": "^2.0.4",
+    "passport-facebook": "^3.0.0",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
