@@ -1,35 +1,26 @@
 import React from 'react';
-// import Autocomplete from 'react-google-autocomplete';
-import { TextField } from '@material-ui/core'
-
 import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
 import 'react-google-places-autocomplete/dist/index.min.css';
-
+import { useHistory } from 'react-router-dom';
 
 const Search = (props) => {
+  // useHistory allows you to navigate to new uri or go back
+  const history = useHistory();
+
+  const handleClick = (location) => {
+    props.onSubmit(location);
+    history.push('/results');
+  }
+
   return (
     <div>
-    <GooglePlacesAutocomplete
-      // onSelect={console.log}
-      placeholder="Search for your address..."
-      onSelect={props.onAddressSubmit}
-      apiKey={props.apiKey}
-      // custom input field using Material UI
-      // renderInput={(props) => (
-      //   <div className="custom-wrapper">
-      //     <TextField
-      //     id="standard-full-width"
-      //     label="Search for your address"
-      //     style={{ margin: 0 }}
-      //     fullWidth
-      //     margin="normal"
-      //       // Custom properties
-      //       {...props}
-      //     />
-      //   </div>
-      // )}
-    />
-  </div>
+      {/* Imported component for using Google Places autocomplete in our search bar */}
+      <GooglePlacesAutocomplete
+        placeholder="Search for your address..."
+        onSelect={(location) => { handleClick(location) }}
+        apiKey={props.apiKey}
+      />
+    </div>
   )
 };
 

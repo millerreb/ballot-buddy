@@ -17,6 +17,7 @@ module.exports = {
       '/auth': 'http://localhost:3000',
       '/user': 'http://localhost:3000',
     },
+    historyApiFallback: true,
   },
   resolve: {
     extensions: ['.js', '.jsx', '.json'],

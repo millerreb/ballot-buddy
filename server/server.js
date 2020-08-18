@@ -5,11 +5,7 @@ const userModel = require('./models/user');
 const buddyRouter = require('./routes/buddyRouter');
 const userRouter = require('./routes/userRouter');
 const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
 require('dotenv').config();
-const passport = require('passport')
-  , FacebookStrategy = require('passport-facebook').Strategy;
-
 const passport = require('passport')
   , FacebookStrategy = require('passport-facebook').Strategy;
 
@@ -21,14 +17,13 @@ app.use('/assets', express.static(path.resolve(__dirname, '../client/assets')));
 // Cookie Parser
 app.use(cookieParser());
 
-// Body-Parser for...reasons?
-app.use(bodyParser.urlencoded({extended: false}));
-
 // Parses incoming JSON bodies
-app.use(bodyParser.json());
+app.use(express.json());
 
 // Connect to DB
-let url = 'mongodb+srv://travisAdmin:'
+let url = 'mongodb+srv://'
+url += process.env.MONGODB_USERNAME;
+url += ':'
 url += process.env.MONGODB_PASSWORD;
 url += '@ballot-buddy.xsilm.mongodb.net/User-Data?retryWrites=true&w=majority'
 
@@ -37,20 +32,22 @@ mongoose.connect(url, {
   useUnifiedTopology: true
 })
 
-// Passport
+// Passport Strategy
 passport.use(new FacebookStrategy({
-    clientID: "318062672725904",
-    clientSecret: "5e1444328b7e4395631af4f6d43846f7",
+    clientID: process.env.FACEBOOK_CLIENT_ID,
+    clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
     callbackURL: "/auth/facebook/complete",
     profileFields: ['id', 'displayName', 'emails']
   },
   function(accessToken, refreshToken, profile, done) {
+    // Checking to find user in database (i.e., have they logged in before?)
     userModel.findOne({
       "facebookId": profile.id
     }, function(err, user) {
       if (err) {
         return done(err);
       }
+      // No user, so we make a new one!
       if (!user) {
         user = new userModel({
           "name": profile._json.name,
@@ -61,6 +58,7 @@ passport.use(new FacebookStrategy({
           if (err) console.log(err);
           return done(err, user);
         });
+      // Found the user, move on to callback url
       } else {
         return done(err, user);
       }
@@ -68,6 +66,7 @@ passport.use(new FacebookStrategy({
   }
 ));
 
+// Starts up passport - See passport documentation for details
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -81,19 +80,33 @@ passport.deserializeUser(function(id, done) {
   })
 });
 
-app.get('/auth/facebook', passport.authenticate('facebook', { scope: 'email' }))
-app.get('/auth/facebook/complete', (req, res) => {
-  passport.authenticate('facebook', { successRedirect: '/',
-                                      failureRedirect: '/random' })(req, res, next)});
+// Callback route handler, takes us back to homepage if succesfull
+app.get('/auth/facebook/complete',
+  passport.authenticate('facebook', {
+    successRedirect: '/',
+    failureRedirect: '/fail'
+  }),
+)
 
-// Main App
-app.get('/', (req, res) => res.status(200).sendFile(path.resolve(__dirname, '../index.html')));
+// Initial authorization route handler, sends user to Facebook and asks for basic info + email
+app.get('/auth/facebook', passport.authenticate('facebook', { scope: 'email' }))
+
+// Pure logout route
+app.use('/logout', (req, res) => {
+  req.logout();
+  res.redirect('/');
+});
+
 
 // Handles requests for election info
 app.use('/api', buddyRouter);
 
-// Handles user requests (login, logout, saveballot, retrieveballot)
+// For saving ballots (was not able to implement)
 app.use('/user', userRouter);
+
+// Main App
+app.get('/', (req, res) => res.status(200).sendFile(path.resolve(__dirname, '../index.html')));
+
 
 // 404 Handler
 app.use((req,res) => {
